@@ -17,6 +17,8 @@ def main():
     if not (1 <= len(text) <= 200):
         print(f"entry length {len(text)} out of range 1-200", file=sys.stderr)
         return 1
+    # Gate requires UTF-8 text, not only whitespace: verify before writing.
+    text.encode("utf-8")
     with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
         f.write(text)
     print(f"wrote {len(text)} chars to {out_dir}/entry.txt")
